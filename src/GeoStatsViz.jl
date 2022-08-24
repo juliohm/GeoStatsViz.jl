@@ -13,8 +13,9 @@ import Makie
 
 @reexport using MeshViz
 
-include("ensemble.jl")
-include("histograms.jl")
 include("weights.jl")
+include("histograms.jl")
+include("ensemble.jl")
+include("problems.jl")
 
 end
