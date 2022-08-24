@@ -3,7 +3,19 @@ uuid = "36492b79-4a51-4dff-89b6-31e03c9a81c2"
 authors = ["Júlio Hoffimann <julio.hoffimann@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+GeoStatsBase = "323cb8eb-fbf6-51c0-afd0-f8fba70507b2"
+Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+MeshViz = "9ecf9c4f-6e5a-4b5e-83ae-06f2c7a661d8"
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
+Variography = "04a0146e-e6df-5636-8d7f-62fa9eb0b20c"
+
 [compat]
+GeoStatsBase = "0.27"
+Makie = "0.17"
+MeshViz = "0.5"
+Reexport = "1.2"
+Variography = "0.14"
 julia = "1.6"
 
 [extras]
