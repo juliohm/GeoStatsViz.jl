@@ -15,10 +15,16 @@ import Makie
 
 @reexport using MeshViz
 
-include("weights.jl")
-include("histograms.jl")
-include("ensemble.jl")
-include("problems.jl")
+# GeoStatsBase.jl recipes
+include("base/weights.jl")
+include("base/histograms.jl")
+include("base/ensemble.jl")
+include("base/problems.jl")
+
+# Variography.jl recipes
+include("variography/empirical.jl")
+
+# miscellaneous recipes
 include("hscatter.jl")
 
 end
