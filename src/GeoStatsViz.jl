@@ -23,6 +23,7 @@ include("base/problems.jl")
 
 # Variography.jl recipes
 include("variography/empirical.jl")
+include("variography/theoretical.jl")
 
 # miscellaneous recipes
 include("hscatter.jl")
