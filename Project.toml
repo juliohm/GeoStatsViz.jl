@@ -4,16 +4,20 @@ authors = ["Júlio Hoffimann <julio.hoffimann@gmail.com> and contributors"]
 version = "0.1.0"
 
 [deps]
+Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
 GeoStatsBase = "323cb8eb-fbf6-51c0-afd0-f8fba70507b2"
 Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
 MeshViz = "9ecf9c4f-6e5a-4b5e-83ae-06f2c7a661d8"
+Meshes = "eacbb407-ea5a-433e-ab97-5258b1ca43fa"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 Variography = "04a0146e-e6df-5636-8d7f-62fa9eb0b20c"
 
 [compat]
+Distances = "0.10"
 GeoStatsBase = "0.27"
 Makie = "0.17"
 MeshViz = "0.5"
+Meshes = "0.24"
 Reexport = "1.2"
 Variography = "0.14"
 julia = "1.6"

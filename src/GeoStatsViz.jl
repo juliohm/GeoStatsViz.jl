@@ -4,9 +4,11 @@
 
 module GeoStatsViz
 
+using Meshes
 using GeoStatsBase
 using Variography
 
+using Distances
 using Reexport
 
 import Makie
@@ -17,5 +19,6 @@ include("weights.jl")
 include("histograms.jl")
 include("ensemble.jl")
 include("problems.jl")
+include("hscatter.jl")
 
 end
