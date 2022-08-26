@@ -14,12 +14,12 @@ Variography = "04a0146e-e6df-5636-8d7f-62fa9eb0b20c"
 
 [compat]
 Distances = "0.10"
-GeoStatsBase = "0.27"
+GeoStatsBase = "0.28"
 Makie = "0.17"
 MeshViz = "0.5"
 Meshes = "0.24"
 Reexport = "1.2"
-Variography = "0.14"
+Variography = "0.15"
 julia = "1.6"
 
 [extras]
