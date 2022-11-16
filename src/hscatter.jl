@@ -74,14 +74,16 @@ function Makie.plot!(plot::HScatter)
   colorant = MeshViz.process(color, colorscheme, alpha)
 
   # lookup valid data
-  inds₁ = findall(!ismissing, data[var₁])
-  inds₂ = findall(!ismissing, data[var₂])
-  𝒟₁ = view(data, inds₁)
-  𝒟₂ = view(data, inds₂)
+  I₁ = findall(!ismissing, getproperty(data, var₁))
+  I₂ = findall(!ismissing, getproperty(data, var₂))
+  𝒮₁ = view(data, I₁)
+  𝒮₂ = view(data, I₂)
+  𝒟₁ = domain(𝒮₁)
+  𝒟₂ = domain(𝒮₂)
   X₁ = [coordinates(centroid(𝒟₁, i)) for i in 1:nelements(𝒟₁)]
   X₂ = [coordinates(centroid(𝒟₂, i)) for i in 1:nelements(𝒟₂)]
-  z₁ = 𝒟₁[var₁]
-  z₂ = 𝒟₂[var₂]
+  z₁ = getproperty(𝒮₁, var₁)
+  z₂ = getproperty(𝒮₂, var₂)
 
   # compute pairwise distance
   m, n = length(z₁), length(z₂)
