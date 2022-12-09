@@ -11,7 +11,7 @@ function Makie.plot!(plot::Viz{<:Tuple{GeoWeights}})
   viz!(plot, domain(weights),
     size          = plot[:size],
     color         = collect(weights),
-    alpha         = plot[:alpha][],
+    alpha         = plot[:alpha],
     colorscheme   = plot[:colorscheme],
     boundarycolor = plot[:boundarycolor],
     facetcolor    = plot[:facetcolor],
