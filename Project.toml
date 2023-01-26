@@ -14,7 +14,7 @@ Variography = "04a0146e-e6df-5636-8d7f-62fa9eb0b20c"
 
 [compat]
 Distances = "0.10"
-GeoStatsBase = "0.29"
+GeoStatsBase = "0.29, 0.30"
 Makie = "0.17, 0.18, 0.19"
 MeshViz = "0.7"
 Meshes = "0.26"
