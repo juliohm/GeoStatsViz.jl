@@ -19,13 +19,13 @@ function Makie.plot!(plot::Viz{<:Tuple{EmpiricalVariogram}})
   # visualize variogram
   Makie.scatterlines!(plot, x, y,
     color = plot[:color],
-    markersize = plot[:size],
+    markersize = plot[:pointsize],
   )
 
   # visualize bin counts
   Makie.text!(plot, string.(n),
     position = collect(zip(x, y)),
-    textsize = plot[:size],
+    textsize = plot[:pointsize],
   )
 
   # visualize frequencies as bars

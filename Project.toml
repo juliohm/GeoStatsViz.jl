@@ -1,7 +1,7 @@
 name = "GeoStatsViz"
 uuid = "36492b79-4a51-4dff-89b6-31e03c9a81c2"
 authors = ["Júlio Hoffimann <julio.hoffimann@gmail.com> and contributors"]
-version = "0.1.8"
+version = "0.1.9"
 
 [deps]
 Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
@@ -16,7 +16,7 @@ Variography = "04a0146e-e6df-5636-8d7f-62fa9eb0b20c"
 Distances = "0.10"
 GeoStatsBase = "0.30"
 Makie = "0.19"
-MeshViz = "0.7"
+MeshViz = "0.8"
 Meshes = "0.27, 0.28"
 Reexport = "1.2"
 Variography = "0.15"
