@@ -6,14 +6,15 @@ Makie.plottype(::Variogram) = Viz{<:Tuple{Variogram}}
 
 function Makie.plot!(plot::Viz{<:Tuple{Variogram}})
   # retrieve variogram object
-  γ = plot[:object][]
+  γ = plot[:object]
 
   # start at 1e-6 instead of 0 to avoid
   # nugget artifact in visualization
-  h = range(1e-6, stop=_maxlag(γ), length=100)
+  x = Makie.@lift range(1e-6, stop=_maxlag($γ), length=100)
+  y = Makie.@lift $γ.($x)
 
   # visualize variogram
-  Makie.lines!(plot, h, γ.(h),
+  Makie.lines!(plot, x, y,
     color = plot[:color],
   )
 end
