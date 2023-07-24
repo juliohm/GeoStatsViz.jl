@@ -6,49 +6,96 @@ Makie.plottype(::EstimationProblem) = Viz{<:Tuple{EstimationProblem}}
 
 function Makie.plot!(plot::Viz{<:Tuple{EstimationProblem}})
   # retrieve problem object
-  problem = plot[:object][]
+  problem = plot[:object]
 
   # data and domain
-  pdata   = data(problem)
-  pdomain = domain(problem)
-
-  # visualize domain of data
-  viz!(plot, domain(pdata), color = :olive)
+  dom1 = Makie.@lift domain($problem)
+  dom2 = Makie.@lift domain(data($problem))
 
   # visualize estimation domain
-  viz!(plot, pdomain, alpha = 0.2)
+  viz!(plot, dom1,
+    color       = plot[:color],
+    alpha       = plot[:alpha],
+    colorscheme = plot[:colorscheme],
+    facetcolor  = plot[:facetcolor],
+    showfacets  = plot[:showfacets],
+    pointsize   = plot[:pointsize],
+    segmentsize = plot[:segmentsize]
+  )
+
+  # visualize domain of data
+  viz!(plot, dom2,
+    color       = :black,
+    alpha       = plot[:alpha],
+    facetcolor  = plot[:facetcolor],
+    showfacets  = plot[:showfacets],
+    pointsize   = plot[:pointsize],
+    segmentsize = plot[:segmentsize]
+  )
 end
 
 Makie.plottype(::SimulationProblem) = Viz{<:Tuple{SimulationProblem}}
 
 function Makie.plot!(plot::Viz{<:Tuple{SimulationProblem}})
   # retrieve problem object
-  problem = plot[:object][]
+  problem = plot[:object]
 
   # data and domain
-  pdata   = data(problem)
-  pdomain = domain(problem)
+  dom1 = Makie.@lift domain($problem)
+
+  # visualize estimation domain
+  viz!(plot, dom1,
+    color       = plot[:color],
+    alpha       = plot[:alpha],
+    colorscheme = plot[:colorscheme],
+    facetcolor  = plot[:facetcolor],
+    showfacets  = plot[:showfacets],
+    pointsize   = plot[:pointsize],
+    segmentsize = plot[:segmentsize]
+  )
 
   # visualize domain of data
-  hasdata(problem) && viz!(plot, domain(pdata), color = :olive)
-
-  # visualize simulation domain
-  viz!(plot, pdomain, alpha = 0.2)
+  if hasdata(problem[])
+    dom2 = Makie.@lift domain(data($problem))
+    viz!(plot, dom2,
+      color       = :black,
+      alpha       = plot[:alpha],
+      facetcolor  = plot[:facetcolor],
+      showfacets  = plot[:showfacets],
+      pointsize   = plot[:pointsize],
+      segmentsize = plot[:segmentsize]
+    )
+  end
 end
 
 Makie.plottype(::LearningProblem) = Viz{<:Tuple{LearningProblem}}
 
 function Makie.plot!(plot::Viz{<:Tuple{LearningProblem}})
   # retrieve problem object
-  problem = plot[:object][]
+  problem = plot[:object]
 
   # source and target domain
-  sdomain = domain(sourcedata(problem))
-  tdomain = domain(targetdata(problem))
+  dom1 = Makie.@lift domain(sourcedata($problem))
+  dom2 = Makie.@lift domain(targetdata($problem))
 
-  # visualize source domain
-  viz!(plot, sdomain)
+  # visualize estimation domain
+  viz!(plot, dom1,
+    color       = plot[:color],
+    alpha       = plot[:alpha],
+    colorscheme = plot[:colorscheme],
+    facetcolor  = plot[:facetcolor],
+    showfacets  = plot[:showfacets],
+    pointsize   = plot[:pointsize],
+    segmentsize = plot[:segmentsize]
+  )
 
-  # visualize target domain
-  viz!(plot, tdomain, alpha = 0.2)
+  # visualize domain of data
+  viz!(plot, dom2,
+    color       = :gray90,
+    alpha       = plot[:alpha],
+    facetcolor  = plot[:facetcolor],
+    showfacets  = plot[:showfacets],
+    pointsize   = plot[:pointsize],
+    segmentsize = plot[:segmentsize]
+  )
 end

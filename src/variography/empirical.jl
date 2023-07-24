@@ -6,15 +6,18 @@ Makie.plottype(::EmpiricalVariogram) = Viz{<:Tuple{EmpiricalVariogram}}
 
 function Makie.plot!(plot::Viz{<:Tuple{EmpiricalVariogram}})
   # retrieve variogram object
-  γ = plot[:object][]
+  γ = plot[:object]
 
   # get the data
-  x, y, n = values(γ)
-
-  binsize = x[2] - x[1]
+  xyn = Makie.@lift values($γ)
+  x = Makie.@lift $xyn[1]
+  y = Makie.@lift $xyn[2]
+  n = Makie.@lift $xyn[3]
 
   # discard empty bins
-  x = x[n .> 0]; y = y[n .> 0]; n = n[n .> 0]
+  x = Makie.@lift $x[$n .> 0]
+  y = Makie.@lift $y[$n .> 0]
+  n = Makie.@lift $n[$n .> 0]
 
   # visualize variogram
   Makie.scatterlines!(plot, x, y,
@@ -23,13 +26,15 @@ function Makie.plot!(plot::Viz{<:Tuple{EmpiricalVariogram}})
   )
 
   # visualize bin counts
-  Makie.text!(plot, string.(n),
-    position = collect(zip(x, y)),
+  bincounts = Makie.@lift string.($n)
+  positions = Makie.@lift collect(zip($x, $y))
+  Makie.text!(plot, bincounts,
+    position = positions,
     textsize = plot[:pointsize],
   )
 
   # visualize frequencies as bars
-  f = n*(maximum(y) / maximum(n)) / 10
+  f = Makie.@lift $n*(maximum($y) / maximum($n)) / 10
   Makie.barplot!(plot, x, f,
     color       = plot[:color],
     strokecolor = plot[:facetcolor],

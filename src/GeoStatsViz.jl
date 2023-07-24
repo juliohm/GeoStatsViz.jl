@@ -17,9 +17,8 @@ import Makie
 
 # GeoStatsBase.jl recipes
 include("base/weights.jl")
-include("base/histograms.jl")
-include("base/ensemble.jl")
 include("base/problems.jl")
+include("base/histograms.jl")
 
 # Variography.jl recipes
 include("variography/empirical.jl")
