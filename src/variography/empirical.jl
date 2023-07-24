@@ -42,3 +42,47 @@ function Makie.plot!(plot::Viz{<:Tuple{EmpiricalVariogram}})
     gap         = 0.0,
   )
 end
+
+Makie.plottype(::EmpiricalVarioplane) = Viz{<:Tuple{EmpiricalVarioplane}}
+
+function Makie.plot!(plot::Viz{<:Tuple{EmpiricalVarioplane}})
+  # retrieve varioplane object
+  v = plot[:object]
+
+  # underyling variograms
+  γs = Makie.@lift $v.γs
+
+  # polar angle
+  θs = Makie.@lift $v.θs
+
+  # polar radius
+  rs = Makie.@lift values($γs[1])[1]
+
+  # variogram values for all variograms
+  Z = Makie.@lift begin
+    zs = map($γs) do γ
+      _, zs, __ = values(γ)
+
+      # handle NaN values (i.e. empty bins)
+      isnan(zs[1]) && (zs[1] = 0)
+      for i in 2:length(zs)
+        isnan(zs[i]) && (zs[i] = zs[i-1])
+      end
+
+      zs
+    end
+    reduce(hcat, zs)
+  end
+
+  # exploit symmetry
+  θs = Makie.@lift range(0, 2π, length=2*length($θs))
+  Z  = Makie.@lift [$Z $Z]
+
+  # hide hole at center
+  rs = Makie.@lift [0; $rs]
+  Z  = Makie.@lift [$Z[1:1,:]; $Z]
+
+  Makie.surface!(plot, rs, θs, Z,
+    shading = false
+  )
+end
