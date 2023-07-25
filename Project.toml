@@ -1,7 +1,7 @@
 name = "GeoStatsViz"
 uuid = "36492b79-4a51-4dff-89b6-31e03c9a81c2"
 authors = ["Júlio Hoffimann <julio.hoffimann@gmail.com> and contributors"]
-version = "0.1.14"
+version = "0.1.15"
 
 [deps]
 Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
